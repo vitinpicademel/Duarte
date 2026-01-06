@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image: 
+      radial-gradient(circle at 2px 2px, rgba(220, 38, 38, 0.03) 1px, transparent 0),
+      linear-gradient(to bottom, #0a0505, #110a0a);
+    background-size: 40px 40px, 100% 100%;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply font-bold uppercase;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-red-gradient {
+    @apply bg-gradient-to-r from-red-900 via-red-600 to-red-500 bg-clip-text text-transparent;
+  }
+  .glass-dark {
+    @apply backdrop-blur-md bg-red-950/30 border border-red-500/30;
+  }
+  .neon-red-border {
+    @apply border border-red-500/50;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2);
+  }
+  .neon-red-border-lg {
+    @apply border border-red-500/70;
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.5), 0 0 60px rgba(220, 38, 38, 0.3);
+  }
+}
+
+/* Animação de pulsação para CTAs */
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.4);
+  }
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
