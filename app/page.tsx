@@ -10,6 +10,7 @@ import Solution from '@/components/landing-page/Solution'
 import Deliverables from '@/components/landing-page/Deliverables'
 import Testimonials from '@/components/landing-page/Testimonials'
 import About from '@/components/landing-page/About'
+import Protocols from '@/components/landing-page/Protocols'
 import FAQ from '@/components/landing-page/FAQ'
 import Pricing from '@/components/landing-page/Pricing'
 import Footer from '@/components/landing-page/Footer'
@@ -59,41 +60,44 @@ function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
               </div>
 
               <p className="text-gray-300 text-sm md:text-base mb-6">
-                Escolha abaixo o objetivo que mais se encaixa com você. Vamos
-                direcionar seu acesso para o protocolo ideal dentro do MFIT
-                Personal.
+                Escolha abaixo o protocolo que mais se encaixa com o seu momento. Ao clicar, você será direcionado
+                diretamente para a página de inscrição do protocolo selecionado.
               </p>
 
               <div className="space-y-3">
                 <button
                   onClick={() =>
-                    handleRedirect(
-                      'https://desafio.mfitpersonal.com.br/desafio/w60',
-                    )
+                    handleRedirect('https://desafio.mfitpersonal.com.br/desafio/wm7')
                   }
                   className="w-full text-left bg-gradient-to-r from-red-900 via-red-700 to-red-600 text-white px-5 py-4 rounded-lg font-display font-bold text-sm md:text-base hover:shadow-red-glow transition-all"
                 >
-                  Hipertrofia Masculina
+                  Protocolo Emagrecimento
+                </button>
+                <button
+                  onClick={() =>
+                    handleRedirect('https://desafio.mfitpersonal.com.br/desafio/wm3')
+                  }
+                  className="w-full text-left bg-gradient-to-r from-red-900 via-red-700 to-red-600 text-white px-5 py-4 rounded-lg font-display font-bold text-sm md:text-base hover:shadow-red-glow transition-all"
+                >
+                  Protocolo Hipertrofia Feminina
                 </button>
                 <button
                   onClick={() =>
                     handleRedirect(
-                      'https://desafio.mfitpersonal.com.br/desafio/w61',
+                      'https://desafio.mfitpersonal.com.br/index?acao=challengeSignup&tipo=4&idCh=42367',
                     )
                   }
                   className="w-full text-left bg-gradient-to-r from-red-900 via-red-700 to-red-600 text-white px-5 py-4 rounded-lg font-display font-bold text-sm md:text-base hover:shadow-red-glow transition-all"
                 >
-                  Emagrecimento (Geral)
+                  Protocolo Performance
                 </button>
                 <button
                   onClick={() =>
-                    handleRedirect(
-                      'https://desafio.mfitpersonal.com.br/desafio/w62',
-                    )
+                    handleRedirect('https://desafio.mfitpersonal.com.br/desafio/wm8')
                   }
                   className="w-full text-left bg-gradient-to-r from-red-900 via-red-700 to-red-600 text-white px-5 py-4 rounded-lg font-display font-bold text-sm md:text-base hover:shadow-red-glow transition-all"
                 >
-                  Hipertrofia Feminina
+                  Protocolo Hipertrofia Masculina
                 </button>
               </div>
             </div>
@@ -120,8 +124,9 @@ export default function Home() {
       <Deliverables />
       <Testimonials />
       <About />
-      <FAQ />
+      <Protocols />
       <Pricing onOpenCheckout={openCheckout} />
+      <FAQ />
       <Footer onOpenCheckout={openCheckout} />
       <WhatsAppButton />
       <CheckoutModal isOpen={isCheckoutOpen} onClose={closeCheckout} />

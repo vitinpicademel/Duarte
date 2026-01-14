@@ -3,24 +3,32 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const testimonials = [
+type Testimonial = {
+  prefix: string
+  name: string
+  age?: number
+  text: string
+}
+
+// Para adicionar/remover alunos, basta incluir/remover objetos neste array.
+// As imagens seguem o padrão: `/testimonials/{prefix}-antes.png` e `/testimonials/{prefix}-depois.png`
+const testimonials: Testimonial[] = [
   {
-    before: 'https://placehold.co/300x400/1a1a1a/FFF?text=Antes',
-    after: 'https://placehold.co/300x400/dc2626/FFF?text=Depois',
-    name: 'João Silva',
-    text: 'Em 3 meses consegui resultados que não tinha em 2 anos treinando sozinho. O protocolo mudou minha vida!',
+    prefix: '1',
+    name: 'Tiago Wilt',
+    age: 36,
+    text: 'Tiago Wilt, 36 anos, seguiu com disciplina nossos treinos e orientações. Hoje, ele carrega no corpo a prova real de que a disciplina sempre supera as desculpas. O resultado visual fala por si mesmo.',
   },
   {
-    before: 'https://placehold.co/300x400/1a1a1a/FFF?text=Antes',
-    after: 'https://placehold.co/300x400/dc2626/FFF?text=Depois',
-    name: 'Maria Santos',
-    text: 'Finalmente entendi como treinar e me alimentar corretamente. Perdi 12kg e ganhei muita massa muscular.',
+    prefix: '2',
+    name: 'Regis',
+    age: 45,
+    text: 'Regis, 45 anos, é a prova viva de que o comprometimento gera resultados. Em apenas 3 meses de treino estruturado, provou que a constância e a disciplina vencem qualquer tipo de desculpa ou idade.',
   },
   {
-    before: 'https://placehold.co/300x400/1a1a1a/FFF?text=Antes',
-    after: 'https://placehold.co/300x400/dc2626/FFF?text=Depois',
-    name: 'Carlos Oliveira',
-    text: 'Sai da estagnação total. Hoje tenho o físico que sempre sonhei. O método realmente funciona!',
+    prefix: '3',
+    name: 'Alisson',
+    text: 'Alisson, em apenas 45 dias de protocolo, transformou muito mais que a aparência. Além do físico renovado, resgatou sua autoestima e atingiu um novo nível de qualidade de vida, energia e disposição.',
   },
 ]
 
@@ -39,7 +47,11 @@ export default function Testimonials() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => {
+            const beforeSrc = `/testimonials/${testimonial.prefix}-antes.png`
+            const afterSrc = `/testimonials/${testimonial.prefix}-depois.png`
+
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -53,7 +65,7 @@ export default function Testimonials() {
               <div className="grid grid-cols-2 gap-2 p-2">
                 <div className="relative aspect-[3/4] rounded overflow-hidden border-2 border-red-900/50">
                   <Image
-                    src={testimonial.before}
+                    src={beforeSrc}
                     alt={`${testimonial.name} - Antes`}
                     fill
                     className="object-cover"
@@ -64,7 +76,7 @@ export default function Testimonials() {
                 </div>
                 <div className="relative aspect-[3/4] rounded overflow-hidden border-2 border-red-500/70 shadow-red-glow">
                   <Image
-                    src={testimonial.after}
+                    src={afterSrc}
                     alt={`${testimonial.name} - Depois`}
                     fill
                     className="object-cover"
@@ -81,11 +93,12 @@ export default function Testimonials() {
                   &quot;{testimonial.text}&quot;
                 </p>
                 <p className="text-red-500 font-bold text-base md:text-lg">
-                  — {testimonial.name}
+                  {testimonial.age ? `— ${testimonial.name}, ${testimonial.age} anos` : `— ${testimonial.name}`}
                 </p>
               </div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
