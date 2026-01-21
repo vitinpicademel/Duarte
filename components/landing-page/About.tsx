@@ -1,15 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Award, Target, TrendingUp, Volume2, VolumeX } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function About() {
   const [isMuted, setIsMuted] = useState(true)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const toggleMute = () => {
-    setIsMuted(!isMuted)
+    const newMutedState = !isMuted
+    setIsMuted(newMutedState)
+    
+    // Controle do som via postMessage para o iframe do YouTube
+    if (iframeRef.current) {
+      const iframe = iframeRef.current
+      const message = newMutedState 
+        ? '{"event":"command","func":"mute","args":""}'
+        : '{"event":"command","func":"unMute","args":""}'
+      
+      iframe.contentWindow?.postMessage(message, '*')
+    }
   }
+
+  useEffect(() => {
+    // Garantir que comece mudo
+    if (iframeRef.current) {
+      const iframe = iframeRef.current
+      const message = '{"event":"command","func":"mute","args":""}'
+      iframe.contentWindow?.postMessage(message, '*')
+    }
+  }, [])
 
   return (
     <section id="quem-somos" className="py-16 md:py-24 bg-dark-secondary relative overflow-hidden">
@@ -34,17 +55,19 @@ export default function About() {
               transition={{ duration: 0.6 }}
               className="relative w-[320px] max-w-xs mx-auto md:mx-0 aspect-[9/16] rounded-lg overflow-hidden neon-red-border-lg shadow-red-glow bg-black"
             >
-              <video
-                src="https://youtube.com/shorts/wcv3FDJA8z0?feature=share"
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
+              <iframe
+                ref={iframeRef}
+                src="https://www.youtube.com/embed/wcv3FDJA8z0?autoplay=1&mute=1&loop=1&playlist=wcv3FDJA8z0&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&disablekb=1&autohide=1&iv_load_policy=3&fs=0&cc_load_policy=0&hl=pt&vq=hd1080&hd=1"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ pointerEvents: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen={false}
+                title="Criadores do Protocolo Duarte"
+                tabIndex={-1}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-transparent to-transparent pointer-events-none" />
               
-              {/* Botão de controle de som */}
+              {/* Botão de controle de som - agora controla o iframe */}
               <motion.button
                 onClick={toggleMute}
                 whileHover={{ scale: 1.1 }}

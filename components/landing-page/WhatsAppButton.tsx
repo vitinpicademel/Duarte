@@ -4,7 +4,7 @@ import { MessageCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function WhatsAppButton() {
-  const phoneNumber = '5511999999999' // Substitua pelo número real
+  const phoneNumber = '5534993313718' // Número atualizado
   const message = encodeURIComponent(
     'Olá! Tenho interesse no Protocolo Duarte e gostaria de mais informações.'
   )

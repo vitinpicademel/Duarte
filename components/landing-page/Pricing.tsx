@@ -120,8 +120,8 @@ export default function Pricing({ onOpenCheckout }: PricingProps) {
               </motion.div>
 
               {/* What's Included */}
-              <div className="space-y-4 text-left">
-                <h3 className="text-xl font-display font-bold text-white mb-4 text-center">
+              <div className="space-y-4 text-center">
+                <h3 className="text-xl font-display font-bold text-white mb-4">
                   O Que Você Recebe:
                 </h3>
                 <div className="space-y-3">
@@ -138,12 +138,14 @@ export default function Pricing({ onOpenCheckout }: PricingProps) {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
-                      className="flex items-center gap-3"
+                      className="flex items-center justify-center gap-3"
                     >
-                      <CheckCircle2
-                        size={22}
-                        className="text-red-500 flex-shrink-0"
-                      />
+                      <div className="flex items-center justify-center">
+                        <CheckCircle2
+                          size={22}
+                          className="text-red-500 flex-shrink-0"
+                        />
+                      </div>
                       <span className="text-gray-300 text-sm md:text-base">{item}</span>
                     </motion.div>
                   ))}

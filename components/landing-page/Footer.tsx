@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 
 type FooterProps = {
   onOpenCheckout: () => void
@@ -81,6 +81,17 @@ export default function Footer({ onOpenCheckout }: FooterProps) {
                 className="hover:text-red-500 transition-colors text-sm md:text-base"
               >
                 suporte@protocoloduarte.com
+              </a>
+            </div>
+            <div className="flex items-center gap-2 text-gray-400 mb-4">
+              <Phone size={18} />
+              <a
+                href="https://wa.me/5534993313718"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 transition-colors text-sm md:text-base"
+              >
+                34 99331-3718
               </a>
             </div>
           </div>
