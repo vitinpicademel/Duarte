@@ -35,7 +35,7 @@ export default function About() {
               className="relative w-[320px] max-w-xs mx-auto md:mx-0 aspect-[9/16] rounded-lg overflow-hidden neon-red-border-lg shadow-red-glow bg-black"
             >
               <video
-                src="/video-criadores.mp4"
+                src="https://youtube.com/shorts/wcv3FDJA8z0?feature=share"
                 autoPlay
                 loop
                 muted={isMuted}
